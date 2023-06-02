@@ -1,0 +1,170 @@
+﻿:root {
+    --color-gold: rgb(255,204,76);
+}
+
+body {
+    background-color: black;
+}
+
+h2 {
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+section {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+}
+
+    section h1 {
+        color: rgb(255, 255, 255);
+        font-size: 30px;
+        margin: 0px;
+        margin-bottom: 20px;
+    }
+
+input {
+    font-size: 16px;
+    padding: 5px;
+    margin: 5px;
+}
+
+label {
+    color: #fff;
+    font-size: 16px;
+    margin: 5px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+th, td {
+    border: 1px solid #FFFFFF;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #2b2828;
+    font-weight: bold;
+}
+
+.th-null {
+    border: none;
+    background-color: #000000;
+}
+
+.height-table {
+    height: 500px;
+    overflow: auto;
+}
+
+.border-div {
+    padding: 20px;
+    border: 2px solid var(--color-gold);
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.worker-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    font-size: 16px;
+    color: var(--color-gold);
+    background-color: #000000;
+    border: 2px solid var(--color-gold);
+    padding: 5px;
+    margin: 5px;
+}
+
+.buttons-align {
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between
+}
+
+.form-product div {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+
+.button-a {
+    font-size: 16px;
+    color: var(--color-gold);
+    background-color: #000000;
+    border: 2px solid var(--color-gold);
+    justify-content: center;
+    padding: 5px;
+    text-decoration: none;
+    font: icon;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+button:hover {
+    background-color: #423c3c;
+    color: #ffd800;
+}
+
+.button-a:hover {
+    background-color: #423c3c;
+    color: #ffd800;
+}
+
+.end-page {
+    padding: 30px;
+}
+
+@media(max-width: 750px) {
+    body {
+        font-size: 12px;
+        flex-direction: column;
+        overflow-x: auto;
+    }
+
+    input {
+        font-size: 12px;
+    }
+
+    section {
+        flex-direction: column;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .button-a {
+        text-align: center
+    }
+
+    .work-area {
+        margin-top: 1px;
+        margin-right: 0px;
+    }
+
+    .adm-area {
+        margin-top: 20px;
+    }
+
+    .border-div {
+        margin-left: auto;
+
+    }
+}

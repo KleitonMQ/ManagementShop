@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DonaMenina.Entities.MergeClass>;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<head>
+    <link rel="stylesheet" href="~/css/ManageWorker.css" />
+</head>
+
+<body>
+
+    <section class="reports">
+        <div class="border-div">
+            <h1 align="center">Relatórios de venda</h1>
+
+            <div class="search-area">
+            </div>
+            <div class="table-container">
+                <table class="table" id="table-products">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Vendedor</th>
+                            <th>Produto Vendido</th>
+                            <th>Quantidade Vendida</th>
+                            <th>Forma de Pagamento</th>
+                            <th>Preço Unitário</th>
+
+                            <th>Data</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            @foreach (var sale in Model)
+                            {
+                                <tr>
+                                    <td class="product-id">@sale.SaleId</td>
+                                    <td class="product-name">@sale.Worker.Name</td>
+                                    <td class="product-brand">@sale.Product.ProductName</td>
+                                    <td class="product-size">@sale.QuantitySold</td>
+                                    <td class="product-size">@sale.Sale.PaymentMethod</td>
+                                    <td class="product-price">@sale.Product.Price</td>
+                                    <td class="product-quantity">@sale.Sale.DataSale</td>
+                                    <td class="product-quantity">@sale.Sale.TotalSale</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <br /><br /><br />
+            <a role="button" asp-action="Index" asp-controller="Home" class="button-a">Voltar</a>
+        </div>
+    </section>
+
+
+
+    <div class="end-page">
+    </div>
+</body>

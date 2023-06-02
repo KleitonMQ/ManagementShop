@@ -1,0 +1,104 @@
+﻿@model DonaMenina.Models.WorkSpaceModel;
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "Bem vindo";
+}
+
+<head>
+    <script src="~/js/site.js"></script>
+    <link rel="stylesheet" href="~/css/worksapce.css" />
+
+</head>
+
+<body>
+    <div class="buttons-sale">
+    <h1>Seção: @Html.DisplayFor(x => x.Worker.Name)</h1>
+    <a role="button" asp-controller="Home" asp-action="Exit" class="button-a">Encerrar Seção</a>
+    </div>
+    <br />
+    <br />
+    <section>
+        <div class="work-area form">
+            <div class="search-area">
+            </div>
+            <div class="table-container height-table">
+                <table class="table" id="table-products">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Marca</th>
+                            <th>Tamanho</th>
+                            <th>Valor</th>
+                            <th>QTD</th>
+                            <th class="th-null"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.Products)
+                        {
+                            <tr>
+                                <td class="product-id">@product.ProductId</td>
+                                <td class="product-name">@product.ProductName</td>
+                                <td class="product-brand">@product.Brand</td>
+                                <td class="product-size">@product.Size</td>
+                                <td class="product-price">@product.Price</td>
+                                <td class="product-quantity">@product.Quantity</td>
+                                <td> <a href="#" onclick="AddProduct()" class="button-table" id="add-product" role="button" data-id="@product.ProductId" style="cursor: pointer">+</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Carrinho de Compras</h2>
+            <form id="shopping-cart-form" method="post" asp-action="ConfirmPurchase" asp-controller="WorkSpace">
+                <div class="table-container height-table">
+                    <table id="table-shopping-cart">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Marca</th>
+                                <th>Tamanho</th>
+                                <th>Valor</th>
+                                <th>QTD</th>
+                                <th class="th-null"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="text" id="id-list" class="id-list" name="IdList" hidden/>
+                <input type="text" id="quantity-list" class="quantity-list" name="QuantityList" hidden/>
+
+                <div class="buttons-sale">
+                    <a role="button" class="button-a" asp-action="Index" asp-controller="Home">Limpar carrinho</a>
+                    <button type="submit" class="adm-button-style" id="confirm-purchase">Confirmar Compra</button>
+                </div>
+            </form>
+        </div>
+
+        @{
+            if (Model.Worker.IsAdm)
+            {
+                <form class="adm-area">
+                    <div class="adm-button-style">
+                        <button onclick="window.location.href='@Url.Action("ManageWorker","WorkSpace")'" type="button">Gerenciar Funcionários</button>
+                    </div>
+                    <div class="adm-button-style">
+                        <button onclick="window.location.href='@Url.Action("ManageProducts","WorkSpace")'" type="button">Gerenciar Mercadorias</button>
+                    </div>
+                    <div class="adm-button-style">
+                        <button onclick="window.location.href='@Url.Action("Reports","WorkSpace")'" type="button">Relatório de vendas</button>
+                    </div>
+                </form>
+            }
+        }
+        
+    </section>
+    <div class="end-page">
+    </div>
+</body>

@@ -1,0 +1,68 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<DonaMenina.Entities.Worker>
+
+<head>
+    <script src="~/js/site.js"></script>
+    <link rel="stylesheet" href="~/css/ManageWorker.css" />
+</head>
+<body>
+    <section>
+        <div class="border-div">
+            <h1>Cadastrar Funcionário</h1>
+            <form method="post" asp-action="InsertWorker" id="insert-worker" class="worker-form">
+                <div>
+                    <input type="text" name="Name" placeholder="Nome do Funcionário" required>
+                </div>
+                <div>
+                    <input type="password" name="Password" placeholder="Criar Senha de acesso" required>
+                </div>
+                <div>
+                    <label for="">Funcionário Ativo: </label> <input type="checkbox" value="true" name="IsActive">
+                </div>
+                <div>
+                    <label for="">Acesso Gerente: </label> <input type="checkbox" value="true" name="IsAdm">
+                </div>
+                <div class="buttons-align">
+                    <a role="button" asp-action="Index" asp-controller="Home" class="button-a">Voltar</a>
+                    <button type="submit">Cadastrar</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="border-div">
+            <h1>Lista de funcionários</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Ativo</th>
+                        <th>Gerente</th>
+                        <th class="th-null"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(model => item.WorkerId)</td>
+                            <td>@Html.DisplayFor(model => item.Name)</td>
+                            <td>@Html.DisplayFor(model => item.IsActive)</td>
+                            <td>@Html.DisplayFor(model => item.IsAdm)</td>
+                            <td> <a role="button" asp-action="EditWorker" asp-route-id="@item.WorkerId" class="button-a">Editar</a> </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </section>
+    <div class="end-page">
+    </div>
+</body>

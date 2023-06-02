@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<head>
+    <script src="~/js/site.js"></script>
+    <link rel="stylesheet" href="~/css/ManageWorker.css" />
+</head>
+
+@model IEnumerable<DonaMenina.Entities.Product>
+
+<body>
+    <section>
+        <div class="border-div">
+            <div>
+                <h2 align="center">Gerenciar Produtos</h2>
+            </div>
+            <div>
+                <button onclick="window.location.href='@Url.Action("InsertProduct","WorkSpace")'">Cadastrar novo Produto</button>
+            </div>
+            <div>
+                <table class="table-container" id="table-products">
+                    <thead>
+                    <th>Codigo</th>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                    <th>Tamanho</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th class="th-null"></th>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Count() != 0)
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(model => item.ProductId)</td>
+                                    <td>@Html.DisplayFor(model => item.ProductName)</td>
+                                    <td>@Html.DisplayFor(model => item.Brand)</td>
+                                    <td>@Html.DisplayFor(model => item.Size)</td>
+                                    <td>@Html.DisplayFor(model => item.Price)</td>
+                                    <td>@Html.DisplayFor(model => item.Quantity)</td>
+                                    <td> <a role="button" asp-action="EditProducts" asp-route-id="@item.ProductId" class="button-a">Editar</a> </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <br /><br />
+            <a role="button" asp-action="Index" asp-controller="Home" class="button-a">Voltar</a>
+        </div>
+    </section>
+    <div class="end-page">
+    </div>
+</body>

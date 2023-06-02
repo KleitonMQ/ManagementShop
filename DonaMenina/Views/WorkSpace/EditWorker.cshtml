@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model DonaMenina.Entities.Worker
+
+<head>
+    <link rel="stylesheet" href="~/css/ManageWorker.css" />
+</head>
+
+<body>
+    <section>
+        <div class="border-div">
+            <h1>Editar Funcionário</h1>
+            <form method="post" asp-action="EditWorker" class="worker-form">
+                <div>
+                    <label>Id: </label> <input type="text" value="@Model.WorkerId" name="WorkerId" readonly />
+                </div>
+                <div>
+                    <input type="text" value="@Model.Name" name="Name" required>
+                </div>
+                <div>
+                    <input type="password" value="@Model.Password" name="Password" required>
+                </div>
+                <div>
+                    <label for="">Funcionário Ativo: </label>
+                    <input type="checkbox" name="IsActive" value="true" @(Model.IsActive ? "checked" : "")>
+                </div>
+                <div>
+                    <label for="">Permissão de Gerente: </label>
+                    <input type="checkbox" name="IsAdm" value="true" @(Model.IsAdm ? "checked" : "")>
+                </div>
+                <div class="buttons-align">
+                    <a role="button" asp-action="ManageWorker" asp-controller="WorkSpace" class="button-a">Cancelar</a>
+                    <button type="submit">Atualizar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <div class="end-page">
+    </div>
+    <script src="~/js/site.js"></script>
+</body>

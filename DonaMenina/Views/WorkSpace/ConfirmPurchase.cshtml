@@ -1,0 +1,72 @@
+﻿@model DonaMenina.Models.WorkSpaceModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+<head>
+    <title>Confirmar Compra</title>
+    <link rel="stylesheet" href="~/css/worksapce.css">
+</head>
+<body>
+
+    <section class="work-area confirm">
+        <div class="title">
+            <h2>Carrinho de compras</h2>
+        </div>
+
+
+        <table id="product-table">
+            <thead>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Marca</th>
+            <th>Tamanho</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            </thead>
+            <tbody>
+                @foreach (var product in Model.ShoppingCart)
+                {
+                    <tr>
+                        <td class="product-id">@product.ProductId</td>
+                        <td class="product-name">@product.ProductName</td>
+                        <td class="product-brand">@product.Brand</td>
+                        <td class="product-size">@product.Size</td>
+                        <td class="product-price">@product.Price</td>
+                        <td class="product-quantity">@product.Quantity</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <form id="payment" method="post" asp-action="SavePurchase" asp-controller="WorkSpace">
+            <label>Forma de pagamento: </label>
+            <select name="paymentMethod" id="payment-method">
+                <option value="Pix">Pix</option>
+                <option value="Especie">Espécie</option>
+                <option value="Debito">Débito</option>
+                <option value="Credito">Crédito</option>
+            </select>
+            <br><br>
+            <div>
+                <label for="">Aplicar Desconto: <input type="number" id="discont" name="discount" placeholder="0" oninput="validateNumber(this)" pattern="[0-9]" min="0" max="100"> %</label>
+            </div>
+            <br>
+            <div>
+                <label id="price">Valor: </label> <br>
+                <label id="total-value">Total a pagar: </label>
+                <input readonly id="total-price" name="totalSale" hidden />
+            </div>
+            <br>
+            <div class="buttons-sale">
+                <a role="button" asp-action="Index" asp-controller="Home" class="button-a">Voltar</a>
+                <button type="submit">Confirmar</button>
+            </div>
+        </form>
+    </section>
+    <div class="end-page">
+    </div>
+</body>
+
+<script src="~/js/confirmpurchase.js"></script>

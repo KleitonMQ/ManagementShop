@@ -1,0 +1,141 @@
+:root {
+    --color-gold: rgb(255,204,76);
+}
+
+html {
+    font-size: 14px;
+    background-color: black;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+        background-color: black;
+        color: white;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+button {
+    font-size: 14px;
+    color: var(--color-gold);
+    background-color: #000000;
+    border: 2px solid var(--color-gold);
+    justify-content: center;
+    padding: 10px;
+    text-decoration: none;
+    font: icon;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.home {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo-home img {
+    width: 70%;
+}
+
+.logo-home {
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding: 15px;
+    color: white;
+    border-top: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    background-color: #000000;
+    scroll-margin-top: 80px;
+}
+
+.footer-colum {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.form {
+    margin-top: -40px;
+}
+
+    .form input {
+        font-size: 12px;
+    }
+
+    .form button {
+        font-size: 20px;
+        margin-left: 15px;
+        padding: 5px 10px
+    }
+
+.date {
+    margin-right: 40px;
+}
+
+#alert {
+    color: red;
+    font-size: 16px;
+    animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+button:hover {
+    background-color: #423c3c;
+    color: #ffd800;
+}
+
+.dataTables_wrapper input[type=search] {
+    color: white;
+    margin: 5px;
+    float: left;
+    
+}
+
+#password{
+    font-size: 20px;
+    padding: 5px;
+}
+
+.dataTables_length {
+    display: none;
+}
+
+.dataTables_filter label {
+    display: flex;
+    align-items: center;
+}
+
+.dataTables_filter {
+    margin-right: 55%;
+}

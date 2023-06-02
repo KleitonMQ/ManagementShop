@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<head>
+    <title>Dona Menina</title>
+    <link rel="stylesheet" href="~/css/worksapce.css">
+</head>
+
+@model DonaMenina.Models.SucessModel
+
+<body>
+    <section class="home">
+        <div class="border-div ">
+            <div class="buttons-align center-div">
+                @if (Model.Sucess == "Editar Produto")
+                {
+                    <h2 align="center">Produto Atualizado com sucesso!</h2>
+
+                    <a role="button" asp-action="ManageProducts" asp-controller="WorkSpace" class="button-a">Voltar</a>
+                }
+                @if (Model.Sucess == "Editar Funcionário")
+                {
+                    <h2 align="center">Funcionário Atualizado com sucesso!</h2>
+
+                    <a role="button" asp-action="ManageWorker" asp-controller="WorkSpace" class="button-a">Voltar</a>
+                }
+                @if (Model.Sucess == "Inserir Produto")
+                {
+                    <h2 align="center">Produto Inserido com sucesso!</h2>
+
+                    <a role="button" asp-action="ManageProducts" asp-controller="WorkSpace" class="button-a">Voltar</a>
+                }
+                @if (Model.Sucess == "Inserir Funcionario")
+                {
+                    <h2 align="center">Funcionário Cadastrado com Sucesso!</h2>
+
+                    <a role="button" asp-action="ManageWorker" asp-controller="WorkSpace" class="button-a">Voltar</a>
+                }
+                @if (Model.Sucess == "Venda Realizada")
+                {
+                    <h2 align="center">Venda Realizada com sucesso!</h2>
+                    <a role="button" asp-action="Index" asp-controller="Home" class="button-a">Voltar</a>
+                }
+            </div>
+        </div>
+    </section>
+    <div class="end-page">
+    </div>
+</body>
