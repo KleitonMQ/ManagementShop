@@ -2,19 +2,14 @@
     --color-gold: rgb(255,204,76);
 }
 
+
+
 html {
     font-size: 14px;
     background-color: black;
     color: white;
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-        background-color: black;
-        color: white;
-    }
-}
 
 html {
     position: relative;
@@ -24,6 +19,7 @@ html {
 body {
     margin-bottom: 60px;
 }
+
 button {
     font-size: 14px;
     color: var(--color-gold);
@@ -45,12 +41,15 @@ button {
 }
 
 .logo-home img {
-    width: 70%;
+    width: 50%;
+    
 }
 
 .logo-home {
     display: flex;
     justify-content: center;
+    margin-top: 10%;
+    
 }
 
 .footer {
@@ -72,11 +71,10 @@ button {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .form {
-    margin-top: -40px;
+    margin-top: 15px;
 }
 
     .form input {
@@ -119,10 +117,9 @@ button:hover {
     color: white;
     margin: 5px;
     float: left;
-    
 }
 
-#password{
+#password {
     font-size: 20px;
     padding: 5px;
 }
@@ -138,4 +135,25 @@ button:hover {
 
 .dataTables_filter {
     margin-right: 55%;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 16px;
+        background-color: black;
+        color: white;
+    }
+
+    .logo-home {
+        margin-top: 30%;
+    }
+    .form{
+        display: flex;
+        align-items:center;
+        flex-direction: column;
+    }
+
+    .form button{
+        margin-top: 15px;
+    }
 }
