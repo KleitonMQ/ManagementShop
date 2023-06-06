@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DonaMenina.Migrations
+namespace ManagementShop.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20230425195304_DonaMeninaDB")]
-    partial class DonaMeninaDB
+    [Migration("20230605191755_ManagementDB01")]
+    partial class ManagementDB01
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,22 +30,20 @@ namespace DonaMenina.Migrations
                     b.Property<int>("SaleId")
                         .HasColumnType("int");
 
+                    b.Property<int>("WorkerID")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId1")
+                    b.Property<int>("QuantitySold")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SaleId1")
-                        .HasColumnType("int");
-
-                    b.HasKey("SaleId", "ProductId");
+                    b.HasKey("SaleId", "WorkerID", "ProductId");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("ProductId1");
-
-                    b.HasIndex("SaleId1");
+                    b.HasIndex("WorkerID");
 
                     b.ToTable("MergeClasses");
                 });
@@ -62,28 +60,14 @@ namespace DonaMenina.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Id")
+                    b.Property<int>("Price")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductPrice")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rebate")
                         .HasColumnType("int");
 
                     b.Property<string>("Size")
@@ -103,22 +87,20 @@ namespace DonaMenina.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleId"));
 
-                    b.Property<int>("IdWorker")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DataSale")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("PaymentMethod")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PriceDiscount")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("TotalSale")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("WorkerId")
-                        .HasColumnType("int");
-
                     b.HasKey("SaleId");
-
-                    b.HasIndex("WorkerId");
 
                     b.ToTable("Sales");
                 });
@@ -131,10 +113,10 @@ namespace DonaMenina.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WorkerId"));
 
-                    b.Property<bool>("IsAdm")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsManage")
+                    b.Property<bool>("IsAdm")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -158,44 +140,23 @@ namespace DonaMenina.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DonaMenina.Entities.Product", null)
-                        .WithMany("MergeClasses")
-                        .HasForeignKey("ProductId1");
-
                     b.HasOne("DonaMenina.Entities.Sale", "Sale")
                         .WithMany()
                         .HasForeignKey("SaleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DonaMenina.Entities.Sale", null)
-                        .WithMany("MergeClasses")
-                        .HasForeignKey("SaleId1");
+                    b.HasOne("DonaMenina.Entities.Worker", "Worker")
+                        .WithMany()
+                        .HasForeignKey("WorkerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
 
                     b.Navigation("Sale");
-                });
 
-            modelBuilder.Entity("DonaMenina.Entities.Sale", b =>
-                {
-                    b.HasOne("DonaMenina.Entities.Worker", "worker")
-                        .WithMany()
-                        .HasForeignKey("WorkerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("worker");
-                });
-
-            modelBuilder.Entity("DonaMenina.Entities.Product", b =>
-                {
-                    b.Navigation("MergeClasses");
-                });
-
-            modelBuilder.Entity("DonaMenina.Entities.Sale", b =>
-                {
-                    b.Navigation("MergeClasses");
+                    b.Navigation("Worker");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace DonaMenina.Migrations
+namespace ManagementShop.Migrations
 {
     /// <inheritdoc />
-    public partial class DonaMeninaDB : Migration
+    public partial class ManagementDB01 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,19 +17,31 @@ namespace DonaMenina.Migrations
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Size = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductPrice = table.Column<int>(type: "int", nullable: false),
-                    Rebate = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sales",
+                columns: table => new
+                {
+                    SaleId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DataSale = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PriceDiscount = table.Column<int>(type: "int", nullable: false),
+                    TotalSale = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales", x => x.SaleId);
                 });
 
             migrationBuilder.CreateTable(
@@ -40,7 +53,7 @@ namespace DonaMenina.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsAdm = table.Column<bool>(type: "bit", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsManage = table.Column<bool>(type: "bit", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,39 +61,17 @@ namespace DonaMenina.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sales",
-                columns: table => new
-                {
-                    SaleId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdWorker = table.Column<int>(type: "int", nullable: false),
-                    WorkerId = table.Column<int>(type: "int", nullable: false),
-                    TotalSale = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sales", x => x.SaleId);
-                    table.ForeignKey(
-                        name: "FK_Sales_Workers_WorkerId",
-                        column: x => x.WorkerId,
-                        principalTable: "Workers",
-                        principalColumn: "WorkerId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MergeClasses",
                 columns: table => new
                 {
                     SaleId = table.Column<int>(type: "int", nullable: false),
+                    WorkerID = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    ProductId1 = table.Column<int>(type: "int", nullable: true),
-                    SaleId1 = table.Column<int>(type: "int", nullable: true)
+                    QuantitySold = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MergeClasses", x => new { x.SaleId, x.ProductId });
+                    table.PrimaryKey("PK_MergeClasses", x => new { x.SaleId, x.WorkerID, x.ProductId });
                     table.ForeignKey(
                         name: "FK_MergeClasses_Products_ProductId",
                         column: x => x.ProductId,
@@ -88,21 +79,17 @@ namespace DonaMenina.Migrations
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MergeClasses_Products_ProductId1",
-                        column: x => x.ProductId1,
-                        principalTable: "Products",
-                        principalColumn: "ProductId");
-                    table.ForeignKey(
                         name: "FK_MergeClasses_Sales_SaleId",
                         column: x => x.SaleId,
                         principalTable: "Sales",
                         principalColumn: "SaleId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MergeClasses_Sales_SaleId1",
-                        column: x => x.SaleId1,
-                        principalTable: "Sales",
-                        principalColumn: "SaleId");
+                        name: "FK_MergeClasses_Workers_WorkerID",
+                        column: x => x.WorkerID,
+                        principalTable: "Workers",
+                        principalColumn: "WorkerId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -111,19 +98,9 @@ namespace DonaMenina.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MergeClasses_ProductId1",
+                name: "IX_MergeClasses_WorkerID",
                 table: "MergeClasses",
-                column: "ProductId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MergeClasses_SaleId1",
-                table: "MergeClasses",
-                column: "SaleId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sales_WorkerId",
-                table: "Sales",
-                column: "WorkerId");
+                column: "WorkerID");
         }
 
         /// <inheritdoc />
