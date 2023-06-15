@@ -7,7 +7,6 @@ body {
     justify-content: center;
     flex-direction: row;
     background-color: #000000;
-    
 }
 
 h1, h2 {
@@ -60,6 +59,7 @@ table {
     color: aliceblue;
     background-color: #000000
 }
+
 .table-container {
     padding-bottom: 20px;
 }
@@ -114,7 +114,8 @@ th {
 .confirm {
     margin-top: 30%;
 }
-button{
+
+button {
     font-size: 16px;
     color: var(--color-gold);
     background-color: #000000;
@@ -141,7 +142,6 @@ button{
 .buttons-sale {
     display: flex;
     justify-content: space-between;
-    
 }
 
 .center-div {
@@ -150,7 +150,6 @@ button{
     justify-content: center;
     align-items: center;
     padding-top: 40%;
-
 }
 
 input {
@@ -193,26 +192,30 @@ button:hover {
     background-color: #000000;
 }
 
-@media(max-width: 750px){
-    body{
+@media(max-width: 750px) {
+    body {
         font-size: 12px;
         flex-direction: column;
+    }
 
-    }
-    input{
+    input {
         font-size: 12px;
     }
-    section{
+
+    section {
         flex-direction: column;
     }
-    .button-a{
-        text-align:center
+
+    .button-a {
+        text-align: center
     }
-    .work-area{
+
+    .work-area {
         margin-top: 1px;
         margin-right: 0px;
     }
-    .adm-area{
+
+    .adm-area {
         margin-top: 20px;
     }
 }
