@@ -5,7 +5,6 @@
 }
 
 <head>
-    <script src="~/js/site.js"></script>
     <link rel="stylesheet" href="~/css/ManageWorker.css" />
 </head>
 @model DonaMenina.Entities.Product
@@ -32,7 +31,7 @@
                         <option value="GG">GG</option>
                     </select>
                     <label for="price">Preço:</label>
-                    <input type="number" name="Price" id="price" required>
+                    <input type="text" name="Price" id="price" oninput="formatValue(this)" placeholder="0,00" required>
                 </div>
                 <div>
                     <label for="quantity">Quantidade em estoque: </label>
@@ -47,4 +46,5 @@
     </section>
     <div class="end-page">
     </div>
+    <script src="~/js/site.js"></script>
 </body>
