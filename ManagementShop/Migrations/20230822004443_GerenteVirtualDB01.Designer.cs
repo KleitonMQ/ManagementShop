@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ManagementShop.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20230605191755_ManagementDB01")]
-    partial class ManagementDB01
+    [Migration("20230822004443_GerenteVirtualDB01")]
+    partial class GerenteVirtualDB01
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,8 +60,8 @@ namespace ManagementShop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()

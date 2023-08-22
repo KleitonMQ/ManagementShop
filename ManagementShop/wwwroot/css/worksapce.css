@@ -39,11 +39,7 @@ label {
     margin: auto;
 }
 
-.search-area {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 table {
     border-collapse: collapse;
