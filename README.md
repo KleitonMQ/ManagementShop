@@ -1,7 +1,7 @@
 <body>
   <h1>ManagementShop</h1>
   <h2>Acesso ao Projeto</h2>
-  <p>O projeto está implantado na AWS e pode ser acessado através do link: <a href="http://management.sa-east-1.elasticbeanstalk.com/">http://management.sa-east-1.elasticbeanstalk.com/</a></p>
+  <p>O projeto está implantado na AWS e pode ser acessado através do link: <a href="http://gerentevirtual.somee.com">http://gerentevirtual.somee.com</a></p>
   <h2>Credenciais de Acesso</h2>
   <ul>
     <li>Senha: admin</li>
